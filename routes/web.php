@@ -16,3 +16,35 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/back', function () {
+    return view('Back.index');
+});
+
+Route::get('/samuel', function () {
+    return view('Back.samuel');
+});
+
+Route::get('/animateur', function () {
+    return view('Back.animateur');
+});
+
+Route::get('/grade', function () {
+    return view('Back.grade');
+});
+
+Route::get('/poste', function () {
+    return view('Back.poste');
+});
+
+Route::get('/paroisse', function () {
+    return view('Back.paroisse');
+});
+
+Route::get('/parametre', function () {
+    return view('Back.parametre');
+});
+
+Route::get('/connexion', function () {
+    return view('Back.connexion');
+});
