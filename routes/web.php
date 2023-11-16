@@ -22,11 +22,19 @@ Route::get('/back', function () {
 });
 
 Route::get('/samuel', function () {
-    return view('Back.samuel');
+    return view('Back.acteurs.samuel');
 });
 
 Route::get('/animateur', function () {
-    return view('Back.animateur');
+    return view('Back.acteurs.animateur');
+});
+
+Route::get('/banque-epreuve', function () {
+    return view('Back.galerie.banque-epreuve');
+});
+
+Route::get('/stock-photo', function () {
+    return view('Back.galerie.stockage-photo');
 });
 
 Route::get('/grade', function () {
