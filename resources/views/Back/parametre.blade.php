@@ -29,7 +29,27 @@
             </ul>
         </li>
         
+<<<<<<< HEAD
 
+=======
+        <li class="nav-item">
+          <a class="nav-link collapsed" data-bs-target="#galerie-nav" data-bs-toggle="collapse" href="#">
+              <i class="bi bi-menu-button-wide"></i><span>Galerie</span><i class="bi bi-chevron-down ms-auto"></i>
+          </a>
+          <ul id="galerie-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+              <li>
+                  <a href="/banque-epreuve">
+                      <i class="bi bi-circle"></i><span>Banque d'épreuves</span>
+                  </a>
+              </li>
+              <li>
+                  <a href="/stock-photo">
+                      <i class="bi bi-circle"></i><span>Stock de photos</span>
+                  </a>
+              </li>
+          </ul>
+      </li>
+>>>>>>> 5f8e490ab890f3efd36e4589caa1786acb785a1e
         
 
         <li class="nav-item">
