@@ -3,11 +3,8 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
         <li class="nav-item">
-<<<<<<< HEAD
             <a class="nav-link " href="/index">
-=======
             <a class="nav-link " href="back">
->>>>>>> 5f8e490ab890f3efd36e4589caa1786acb785a1e
                 <i class="bi bi-grid"></i>
                 <span>Dashboard</span>
             </a>
@@ -20,23 +17,21 @@
             </a>
             <ul id="components-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
                 <li>
-                    <a href="/samuel">
+                    <a href="{{route('back.getsamuel')}}">
                         <i class="bi bi-circle"></i><span>Samuels</span>
                     </a>
                 </li>
                 <li>
-                    <a href="/animateur">
+                    <a href="{{route('back.getanimateur')}}">
                         <i class="bi bi-circle"></i><span>Animateurs</span>
                     </a>
                 </li>
             
             </ul>
         </li>
-<<<<<<< HEAD
         
 
         
-=======
         <li class="nav-item">
             <a class="nav-link collapsed" data-bs-target="#galerie-nav" data-bs-toggle="collapse" href="#">
                 <i class="bi bi-menu-button-wide"></i><span>Galerie</span><i class="bi bi-chevron-down ms-auto"></i>
@@ -54,7 +49,6 @@
                 </li>
             </ul>
         </li>
->>>>>>> 5f8e490ab890f3efd36e4589caa1786acb785a1e
 
         <li class="nav-item">
             <a class="nav-link collapsed" href="/grade">

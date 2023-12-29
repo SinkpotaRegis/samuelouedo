@@ -20,20 +20,26 @@ class AdminController extends Controller
 
     public function animateur(){  
         $animateurs = Animateur::all();
-        return view('Back.animateur',compact('animateurs')); }
-
-    public function grade(){ 
-        $grades = Grade::all(); 
-        return view('Back.grade',compact('grades'));
-     }
+        $paroisses = Paroisse::all();
+        return view('Back.animateur',compact('animateurs','paroisses')); }
 
     public function poste(){  return view('Back.poste'); }
+    
+    public function index(){  return view('Back.index'); }
 
     public function parametre(){  return view('Back.parametre'); }
 
     public function paroisse(){
         $paroisses = Paroisse::all(); 
         return view('Back.paroisse',compact('paroisses')); }
+
+    public function trierAnimateursParParoisse($id)
+    {
+        // Récupérer les animateurs pour une paroisse spécifique
+        $animateursParParoisse = Animateur::where('id_paroisse', $id)->get();
+
+        return view('Back.animateurTrier', compact('animateursParParoisse'));
+    }
 
     public function connexion(){  return view('Back.connexion'); }
 }

@@ -8,11 +8,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-<<<<<<< HEAD
     <title>Dashboard - Samuel</title>
-=======
-    <title>Dashboard - NiceAdmin Bootstrap Template</title>
->>>>>>> 5f8e490ab890f3efd36e4589caa1786acb785a1e
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -43,15 +39,11 @@
     <header id="header" class="header fixed-top d-flex align-items-center">
 
         <div class="d-flex align-items-center justify-content-between">
-<<<<<<< HEAD
-            <a href="/index" class="logo d-flex align-items-center">
-                <img src="assets/img/logo.png" alt="">
+            <a href="/" class="logo d-flex align-items-center">
+                <img src="assets/img/logovicariat.png" alt="">
                 <span class="d-none d-lg-block">Vicariat de Ouedo</span>
-=======
             <a href="/back" class="logo d-flex align-items-center">
-                <img src="assets/img/logo.png" alt="">
                 <span class="d-none d-lg-block">Samuel</span>
->>>>>>> 5f8e490ab890f3efd36e4589caa1786acb785a1e
             </a>
             <i class="bi bi-list toggle-sidebar-btn"></i>
         </div>
@@ -60,23 +52,16 @@
                 <li class="nav-item dropdown pe-3">
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
                         <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-<<<<<<< HEAD
                         <span class="d-none d-md-block dropdown-toggle ps-2">Regis Skt</span>
-=======
-                        <span class="d-none d-md-block dropdown-toggle ps-2">K. Florian</span>
->>>>>>> 5f8e490ab890f3efd36e4589caa1786acb785a1e
+                        <span class="d-none d-md-block dropdown-toggle ps-2"></span>
                     </a>
                     
 
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                         <li class="dropdown-header">
-<<<<<<< HEAD
                             <h6>SINKPOTA Regis</h6>
                             <span>Secrétaire Vicarial</span>
-=======
-                            <h6>KOTANMI Florian</h6>
-                            <span>Animateur St Jean</span>
->>>>>>> 5f8e490ab890f3efd36e4589caa1786acb785a1e
+            
                         </li>
                         <li>
                             <hr class="dropdown-divider">
@@ -93,7 +78,7 @@
                         </li>
 
                         <li>
-                            <a class="dropdown-item d-flex align-items-center" href="#">
+                            <a class="dropdown-item d-flex align-items-center" href="/">
                                 <i class="bi bi-box-arrow-right"></i>
                                 <span>Déconnexion</span>
                             </a>
@@ -108,11 +93,8 @@
     </header>
     
 
-<<<<<<< HEAD
 
-=======
     
->>>>>>> 5f8e490ab890f3efd36e4589caa1786acb785a1e
     <aside id="sidebar" class="sidebar">
 
         @yield('sidebar')
@@ -131,11 +113,8 @@
             &copy; Copyright <strong><span>Samuel</span></strong>. Tous les droits réservés
         </div>
         <div class="credits">
-<<<<<<< HEAD
              by <a href="#">@CodeAnytime</a>
-=======
             Designed by <a href="#">kaf</a>
->>>>>>> 5f8e490ab890f3efd36e4589caa1786acb785a1e
         </div>
     </footer>
     

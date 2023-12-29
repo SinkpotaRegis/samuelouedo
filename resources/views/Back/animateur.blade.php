@@ -72,10 +72,10 @@
                                         <li class="dropdown-header text-start">
                                             <h6>Paroisse</h6>
                                         </li>
-
-                                        <li><a class="dropdown-item" href="#">St Jean</a></li>
-                                        <li><a class="dropdown-item" href="#">St Mathieu</a></li>
-                                        <li><a class="dropdown-item" href="#">Bon Pasteur</a></li>
+                                      <!-- Affichage des liens pour chaque paroisse -->
+                                      @foreach($paroisses as $paroisse)
+                                          <a href="{{ route('animateurs.trierParParoisse', $paroisse->id) }}">{{ $paroisse->nom }}</a><br>
+                                      @endforeach
                                     </ul>
                                 </div>
 
@@ -93,26 +93,44 @@
                                                   <h5 class="modal-title mx-auto">Enregistrement d'un animateur</h5>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <form class="row g-3 needs-validation" novalidate>
+                                                    <form class="row g-3 needs-validation" enctype="multipart/form-data" method="POST" action="{{route('back.postanimateur')}}" novalidate>
+                                                      @csrf
                                                         <div class="col-md-6">
                                                           <label for="validationCustom01" class="form-label">Nom</label>
-                                                          <input type="text" class="form-control" id="validationCustom01" value="John" required>
+                                                          <input type="text" name="nom" class="form-control" id="validationCustom01" placeholder="John" required>
                                                           <div class="valid-feedback">
                                                             Looks good!
                                                           </div>
                                                         </div>
                                                         <div class="col-md-6">
                                                           <label for="validationCustom02" class="form-label">Prénoms</label>
-                                                          <input type="text" class="form-control" id="validationCustom02" value="Doe" required>
+                                                          <input type="text" name="prenom" class="form-control" id="validationCustom02" placeholder="Doe" required>
                                                           <div class="valid-feedback">
                                                             Looks good!
                                                           </div>
                                                         </div>
                                                         <div class="col-md-6">
+                                                          <label for="validationCustom03" class="form-label">Contact</label>
+                                                          <input type="tel" name="contact" class="form-control" id="validationCustom03" required>
+                                                          <div class="invalid-feedback">
+                                                            Please provide a valid city.
+                                                          </div>
+                                                      </div>
+                                                        <div class="col-md-6">
+                                                          <label for="validationCustom03" class="form-label">E-mail</label>
+                                                          <input type="email"  name="email" class="form-control" id="validationCustom03" required>
+                                                          <div class="invalid-feedback">
+                                                            Please provide a valid city.
+                                                          </div>
+                                                      </div>
+
+                                                        <div class="col-md-6">
                                                           <label for="validationCustom04" class="form-label">Paroisse</label>
-                                                          <select class="form-select" id="validationCustom04" required>
+                                                          <select class="form-select" name="id_paroisse" id="validationCustom04" required>
                                                             <option selected disabled value="">Choisir la paroisse</option>
-                                                            <option>...</option>
+                                                            @foreach ($paroisses as $item)
+                                                            <option value="{{$item->id}}">{{$item->nom}} {{$item->localisation}} </option>
+                                                            @endforeach
                                                           </select>
                                                           <div class="invalid-feedback">
                                                             Please select a valid state.
@@ -120,37 +138,37 @@
                                                         </div>
                                                         <div class="col-md-6">
                                                             <label for="validationCustom04" class="form-label">Poste</label>
-                                                            <select class="form-select" id="validationCustom04" required>
+                                                            <select class="form-select" name="poste" id="validationCustom04" required>
                                                               <option selected disabled value="">Choisir le poste</option>
-                                                              <option>...</option>
+                                                              <option value="Coordonnateur" >Coordonnateur</option>
+                                                              <option value="1er Formateur" >1er Formateur</option>
+                                                              <option value="secrétaire" >Secrétaire</option>
+                                                              <option value="2nd Formateur" >2nd Formateur</option>
+                                                              <option value="Trésorier" >Trésorier</option>
+                                                              <option value="Organisateur" >Organisateur</option>
                                                             </select>
                                                             <div class="invalid-feedback">
                                                               Please select a valid state.
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-6">
-                                                            <label for="validationCustom03" class="form-label">E-mail</label>
-                                                            <input type="email" class="form-control" id="validationCustom03" required>
-                                                            <div class="invalid-feedback">
-                                                              Please provide a valid city.
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <label for="validationCustom03" class="form-label">Contact</label>
-                                                            <input type="tel" class="form-control" id="validationCustom03" required>
-                                                            <div class="invalid-feedback">
-                                                              Please provide a valid city.
-                                                            </div>
-                                                        </div>
+
                                                         <div class="col-md-12">
                                                             <label for="validationCustom03" class="form-label">Année Pastorale</label>
-                                                            <input type="text" class="form-control" id="validationCustom03" required>
+                                                            <input type="text" name="annee_pastorale"  class="form-control" id="validationCustom03" required>
                                                             <div class="invalid-feedback">
                                                               Please provide a valid city.
                                                             </div>
                                                         </div>
+
+                                                        <div class="col-md-12">
+                                                          <label for="validationCustom03" class="form-label">Photo</label>
+                                                          <input type="file" name="photo"  class="form-control" id="validationCustom03" required>
+                                                          <div class="invalid-feedback">
+                                                            Please provide a valid city.
+                                                          </div>
+                                                      </div>
                                                         
-                                                        <div class="col-md-6">
+                                                        {{-- <div class="col-md-6">
                                                             <label for="validationCustom03" class="form-label">Mot de passe</label>
                                                             <input type="password" class="form-control" id="validationCustom03" required>
                                                             <div class="invalid-feedback">
@@ -163,7 +181,7 @@
                                                             <div class="invalid-feedback">
                                                               Please provide a valid city.
                                                             </div>
-                                                        </div>
+                                                        </div> --}}
                                                         <div class="col-12 text-center">
                                                           <button class="btn btn-primary" type="submit">Enregistrer</button>
                                                           <button type="bouton" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
@@ -181,35 +199,43 @@
                                             <tr>
                                                 <th scope="col">Profil</th>
                                                 <th scope="col">Nom & Prénoms</th>
+                                                <th scope="col">Contact</th>
                                                 <th scope="col">E-mail</th>
                                                 <th scope="col">Paroisse</th>
                                                 <th scope="col">Poste</th>
+                                                <th scope="col">Année-Pastorale</th>
+                                                <th scope="col">Détail</th>
                                                 
                                             </tr>
                                         </thead>
                                         <tbody>
+                                          @foreach ($animateurs as $item)
                                             <tr>
                                                 <th scope="row">
                                                     <form action="/upload" method="POST" enctype="multipart/form-data" id="imageForm">
                                                         @csrf 
                                                         <div class="input-group">
-                                                            <input type="file" name="image" id="image" class="d-none" onchange="soumettre()" accept="image/*">
+                                                            <input type="file" name="photo" id="image" class="d-none" onchange="soumettre()" accept="image/*">
                                                             <label for="image" class="btn  btn-sm" title="Upload new profile image">
-                                                                <img src="assets/img/profile-img.jpg" alt="">
+                                                                <img src="{{ asset('storage/'.$item->photo) }}" alt="">
                                                             </label>
                                                         </div>
                                                     </form>
                                                 </th>
                                                 
-                                                <td>Brandon Jacob</td>
-                                                <td>amedeflorian@gmail.com</td>
-                                                <td class="text-primary">St Jean</td>
-                                                <td>Premier Servant</td>
+                                                <td>{{$item->nom}} {{$item->prenom}}</td>
+                                                <td>{{$item->contact}}</td>
+                                                <td>{{$item->email}}</td>
+                                                <td>{{$item->paroisse->nom}}</td>
+                                                <td>{{$item->poste}}</td>
+                                                <td class="text-primary">{{$item->annee_pastorale}}</td>
                                                 <td >
                                                     <div class="text-center ">
                                                         <a href="#" class="text-primary mx-auto" data-bs-toggle="modal" data-bs-target="#disablebackdrop1"><i class="bi bi-pencil-square bi-2x"></i></a>
                                                         <a href="#" class="text-danger mx-auto"><i class="bi bi-trash-fill bi-2x"></i></a>
                                                     </div>
+                                                  </td>
+                                                @endforeach
                                                     
                                                     <div class="modal fade" id="disablebackdrop1" tabindex="-1" data-bs-backdrop="false">
                                                         <div class="modal-dialog">
@@ -277,374 +303,6 @@
                                                                 </form>                                                            
                                                             </div>
                                                           </div>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">
-                                                    <form action="/upload" method="POST" enctype="multipart/form-data" id="imageForm">
-                                                        @csrf 
-                                                        <div class="input-group">
-                                                            <input type="file" name="image" id="image" class="d-none" onchange="soumettre()" accept="image/*">
-                                                            <label for="image" class="btn  btn-sm" title="Upload new profile image">
-                                                                <img src="assets/img/profile-img.jpg" alt="">
-                                                            </label>
-                                                        </div>
-                                                    </form>
-                                                </th>
-                                                <td>Bridie Kessler</td>
-                                                <td>amedeflorian@gmail.com</td>
-                                                <td class="text-primary">St Jean</td>
-                                                <td>Premier Servant</td>
-                                                <td >
-                                                    <div class="text-center ">
-                                                        <a href="#" class="text-primary mx-auto" data-bs-toggle="modal" data-bs-target="#disablebackdrop1"><i class="bi bi-pencil-square bi-2x"></i></a>
-                                                        <a href="#" class="text-danger mx-auto"><i class="bi bi-trash-fill bi-2x"></i></a>
-                                                    </div>
-                                                    
-                                                    <div class="modal fade" id="disablebackdrop1" tabindex="-1" data-bs-backdrop="false">
-                                                        <div class="modal-dialog">
-                                                          <div class="modal-content">
-                                                            
-                                                            <div class="modal-header ">
-                                                              <h5 class="modal-title mx-auto">Modification d'un Animateur</h5>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                <form class="row g-3 needs-validation" novalidate>
-                                                                    <div class="col-md-6">
-                                                                      <label for="validationCustom01" class="form-label">Nom</label>
-                                                                      <input type="text" class="form-control" id="validationCustom01" value="John" required>
-                                                                      <div class="valid-feedback">
-                                                                        Looks good!
-                                                                      </div>
-                                                                    </div>
-                                                                    <div class="col-md-6">
-                                                                      <label for="validationCustom02" class="form-label">Prénoms</label>
-                                                                      <input type="text" class="form-control" id="validationCustom02" value="Doe" required>
-                                                                      <div class="valid-feedback">
-                                                                        Looks good!
-                                                                      </div>
-                                                                    </div>
-                                                                    
-                                                                    
-                                                                    <div class="col-md-6">
-                                                                      <label for="validationCustom04" class="form-label">Paroisse</label>
-                                                                      <select class="form-select" id="validationCustom04" required>
-                                                                        <option selected disabled value="">Choisir la paroisse</option>
-                                                                        <option>...</option>
-                                                                      </select>
-                                                                      <div class="invalid-feedback">
-                                                                        Please select a valid state.
-                                                                      </div>
-                                                                    </div>
-                                                                    <div class="col-md-6">
-                                                                        <label for="validationCustom04" class="form-label">Poste</label>
-                                                                        <select class="form-select" id="validationCustom04" required>
-                                                                          <option selected disabled value="">Choisir le grade</option>
-                                                                          <option>...</option>
-                                                                        </select>
-                                                                        <div class="invalid-feedback">
-                                                                          Please select a valid state.
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-md-6">
-                                                                        <label for="validationCustom03" class="form-label">Année Pastorale</label>
-                                                                        <input type="text" class="form-control" id="validationCustom03" required>
-                                                                        <div class="invalid-feedback">
-                                                                          Please provide a valid city.
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-md-6">
-                                                                        <label for="validationCustom03" class="form-label">Contact</label>
-                                                                        <input type="tel" class="form-control" id="validationCustom03" required>
-                                                                        <div class="invalid-feedback">
-                                                                          Please provide a valid city.
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-12 text-center">
-                                                                      <button class="btn btn-primary" type="submit">Enregistrer</button>
-                                                                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-                                                                    </div>
-                                                                </form>                                                            
-                                                            </div>
-                                                          </div>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">
-                                                    <form action="/upload" method="POST" enctype="multipart/form-data" id="imageForm">
-                                                        @csrf 
-                                                        <div class="input-group">
-                                                            <input type="file" name="image" id="image" class="d-none" onchange="soumettre()" accept="image/*">
-                                                            <label for="image" class="btn  btn-sm" title="Upload new profile image">
-                                                                <img src="assets/img/profile-img.jpg" alt="">
-                                                            </label>
-                                                        </div>
-                                                    </form>
-                                                </th>
-                                                <td>Ashleigh Langosh</td>
-                                                <td>amedeflorian@gmail.com</td>
-                                                <td class="text-primary">St Jean</td>
-                                                <td>Premier Servant</td>
-                                                <td >
-                                                    <div class="text-center ">
-                                                        <a href="#" class="text-primary mx-auto" data-bs-toggle="modal" data-bs-target="#disablebackdrop1"><i class="bi bi-pencil-square bi-2x"></i></a>
-                                                        <a href="#" class="text-danger mx-auto"><i class="bi bi-trash-fill bi-2x"></i></a>
-                                                    </div>
-                                                    
-                                                    <div class="modal fade" id="disablebackdrop1" tabindex="-1" data-bs-backdrop="false">
-                                                        <div class="modal-dialog">
-                                                          <div class="modal-content">
-                                                            
-                                                            <div class="modal-header ">
-                                                              <h5 class="modal-title mx-auto">Modification d'un Samuel</h5>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                <form class="row g-3 needs-validation" novalidate>
-                                                                    <div class="col-md-6">
-                                                                      <label for="validationCustom01" class="form-label">Nom</label>
-                                                                      <input type="text" class="form-control" id="validationCustom01" value="John" required>
-                                                                      <div class="valid-feedback">
-                                                                        Looks good!
-                                                                      </div>
-                                                                    </div>
-                                                                    <div class="col-md-6">
-                                                                      <label for="validationCustom02" class="form-label">Prénoms</label>
-                                                                      <input type="text" class="form-control" id="validationCustom02" value="Doe" required>
-                                                                      <div class="valid-feedback">
-                                                                        Looks good!
-                                                                      </div>
-                                                                    </div>
-                                                                    
-                                                                    
-                                                                    <div class="col-md-6">
-                                                                      <label for="validationCustom04" class="form-label">Paroisse</label>
-                                                                      <select class="form-select" id="validationCustom04" required>
-                                                                        <option selected disabled value="">Choisir la paroisse</option>
-                                                                        <option>...</option>
-                                                                      </select>
-                                                                      <div class="invalid-feedback">
-                                                                        Please select a valid state.
-                                                                      </div>
-                                                                    </div>
-                                                                    <div class="col-md-6">
-                                                                        <label for="validationCustom04" class="form-label">Grade</label>
-                                                                        <select class="form-select" id="validationCustom04" required>
-                                                                          <option selected disabled value="">Choisir le grade</option>
-                                                                          <option>...</option>
-                                                                        </select>
-                                                                        <div class="invalid-feedback">
-                                                                          Please select a valid state.
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-md-6">
-                                                                        <label for="validationCustom03" class="form-label">Année Pastorale</label>
-                                                                        <input type="text" class="form-control" id="validationCustom03" required>
-                                                                        <div class="invalid-feedback">
-                                                                          Please provide a valid city.
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-md-6">
-                                                                        <label for="validationCustom03" class="form-label">Contact</label>
-                                                                        <input type="tel" class="form-control" id="validationCustom03" required>
-                                                                        <div class="invalid-feedback">
-                                                                          Please provide a valid city.
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-12 text-center">
-                                                                      <button class="btn btn-primary" type="submit">Enregistrer</button>
-                                                                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-                                                                    </div>
-                                                                </form>                                                            
-                                                            </div>
-                                                          </div>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">
-                                                    <form action="/upload" method="POST" enctype="multipart/form-data" id="imageForm">
-                                                        @csrf 
-                                                        <div class="input-group">
-                                                            <input type="file" name="image" id="image" class="d-none" onchange="soumettre()" accept="image/*">
-                                                            <label for="image" class="btn  btn-sm" title="Upload new profile image">
-                                                                <img src="assets/img/profile-img.jpg" alt="">
-                                                            </label>
-                                                        </div>
-                                                    </form>
-                                                </th>
-                                                <td>Angus Grady</td>
-                                                <td>amedeflorian@gmail.com</td>
-                                                <td class="text-primary">St Jean</td>
-                                                <td>Premier Servant</td>
-                                                <td >
-                                                    <div class="text-center ">
-                                                        <a href="#" class="text-primary mx-auto" data-bs-toggle="modal" data-bs-target="#disablebackdrop1"><i class="bi bi-pencil-square bi-2x"></i></a>
-                                                        <a href="#" class="text-danger mx-auto"><i class="bi bi-trash-fill bi-2x"></i></a>
-                                                    </div>
-                                                    
-                                                    <div class="modal fade" id="disablebackdrop1" tabindex="-1" data-bs-backdrop="false">
-                                                        <div class="modal-dialog">
-                                                            <div class="modal-content">
-                                                            
-                                                                <div class="modal-header ">
-                                                                  <h5 class="modal-title mx-auto">Modification d'un Animateur</h5>
-                                                                </div>
-                                                                <div class="modal-body">
-                                                                    <form class="row g-3 needs-validation" novalidate>
-                                                                        <div class="col-md-6">
-                                                                          <label for="validationCustom01" class="form-label">Nom</label>
-                                                                          <input type="text" class="form-control" id="validationCustom01" value="John" required>
-                                                                          <div class="valid-feedback">
-                                                                            Looks good!
-                                                                          </div>
-                                                                        </div>
-                                                                        <div class="col-md-6">
-                                                                          <label for="validationCustom02" class="form-label">Prénoms</label>
-                                                                          <input type="text" class="form-control" id="validationCustom02" value="Doe" required>
-                                                                          <div class="valid-feedback">
-                                                                            Looks good!
-                                                                          </div>
-                                                                        </div>
-                                                                        
-                                                                        
-                                                                        <div class="col-md-6">
-                                                                          <label for="validationCustom04" class="form-label">Paroisse</label>
-                                                                          <select class="form-select" id="validationCustom04" required>
-                                                                            <option selected disabled value="">Choisir la paroisse</option>
-                                                                            <option>...</option>
-                                                                          </select>
-                                                                          <div class="invalid-feedback">
-                                                                            Please select a valid state.
-                                                                          </div>
-                                                                        </div>
-                                                                        <div class="col-md-6">
-                                                                            <label for="validationCustom04" class="form-label">Poste</label>
-                                                                            <select class="form-select" id="validationCustom04" required>
-                                                                              <option selected disabled value="">Choisir le grade</option>
-                                                                              <option>...</option>
-                                                                            </select>
-                                                                            <div class="invalid-feedback">
-                                                                              Please select a valid state.
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-md-6">
-                                                                            <label for="validationCustom03" class="form-label">Année Pastorale</label>
-                                                                            <input type="text" class="form-control" id="validationCustom03" required>
-                                                                            <div class="invalid-feedback">
-                                                                              Please provide a valid city.
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-md-6">
-                                                                            <label for="validationCustom03" class="form-label">Contact</label>
-                                                                            <input type="tel" class="form-control" id="validationCustom03" required>
-                                                                            <div class="invalid-feedback">
-                                                                              Please provide a valid city.
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-12 text-center">
-                                                                          <button class="btn btn-primary" type="submit">Enregistrer</button>
-                                                                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-                                                                        </div>
-                                                                    </form>                                                            
-                                                                </div>
-                                                              </div>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">
-                                                    <form action="/upload" method="POST" enctype="multipart/form-data" id="imageForm">
-                                                        @csrf 
-                                                        <div class="input-group">
-                                                            <input type="file" name="image" id="image" class="d-none" onchange="soumettre()" accept="image/*">
-                                                            <label for="image" class="btn  btn-sm" title="Upload new profile image">
-                                                                <img src="assets/img/profile-img.jpg" alt="">
-                                                            </label>
-                                                        </div>
-                                                    </form>
-                                                </th>
-                                                <td>Raheem Lehner</td>
-                                                <td>amedeflorian@gmail.com</td>
-                                                <td class="text-primary">St Jean</td>
-                                                <td>Premier Servant</td>
-                                                <td >
-                                                    <div class="text-center ">
-                                                        <a href="#" class="text-primary mx-auto" data-bs-toggle="modal" data-bs-target="#disablebackdrop1"><i class="bi bi-pencil-square bi-2x"></i></a>
-                                                        <a href="#" class="text-danger mx-auto"><i class="bi bi-trash-fill bi-2x"></i></a>
-                                                    </div>
-                                                    
-                                                    <div class="modal fade" id="disablebackdrop1" tabindex="-1" data-bs-backdrop="false">
-                                                        <div class="modal-dialog">
-                                                            <div class="modal-content">
-                                                            
-                                                                <div class="modal-header ">
-                                                                  <h5 class="modal-title mx-auto">Modification d'un Animateur</h5>
-                                                                </div>
-                                                                <div class="modal-body">
-                                                                    <form class="row g-3 needs-validation" novalidate>
-                                                                        <div class="col-md-6">
-                                                                          <label for="validationCustom01" class="form-label">Nom</label>
-                                                                          <input type="text" class="form-control" id="validationCustom01" value="John" required>
-                                                                          <div class="valid-feedback">
-                                                                            Looks good!
-                                                                          </div>
-                                                                        </div>
-                                                                        <div class="col-md-6">
-                                                                          <label for="validationCustom02" class="form-label">Prénoms</label>
-                                                                          <input type="text" class="form-control" id="validationCustom02" value="Doe" required>
-                                                                          <div class="valid-feedback">
-                                                                            Looks good!
-                                                                          </div>
-                                                                        </div>
-                                                                        
-                                                                        
-                                                                        <div class="col-md-6">
-                                                                          <label for="validationCustom04" class="form-label">Paroisse</label>
-                                                                          <select class="form-select" id="validationCustom04" required>
-                                                                            <option selected disabled value="">Choisir la paroisse</option>
-                                                                            <option>...</option>
-                                                                          </select>
-                                                                          <div class="invalid-feedback">
-                                                                            Please select a valid state.
-                                                                          </div>
-                                                                        </div>
-                                                                        <div class="col-md-6">
-                                                                            <label for="validationCustom04" class="form-label">Poste</label>
-                                                                            <select class="form-select" id="validationCustom04" required>
-                                                                              <option selected disabled value="">Choisir le grade</option>
-                                                                              <option>...</option>
-                                                                            </select>
-                                                                            <div class="invalid-feedback">
-                                                                              Please select a valid state.
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-md-6">
-                                                                            <label for="validationCustom03" class="form-label">Année Pastorale</label>
-                                                                            <input type="text" class="form-control" id="validationCustom03" required>
-                                                                            <div class="invalid-feedback">
-                                                                              Please provide a valid city.
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-md-6">
-                                                                            <label for="validationCustom03" class="form-label">Contact</label>
-                                                                            <input type="tel" class="form-control" id="validationCustom03" required>
-                                                                            <div class="invalid-feedback">
-                                                                              Please provide a valid city.
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-12 text-center">
-                                                                          <button class="btn btn-primary" type="submit">Enregistrer</button>
-                                                                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-                                                                        </div>
-                                                                    </form>                                                            
-                                                                </div>
-                                                              </div>
                                                         </div>
                                                     </div>
                                                 </td>

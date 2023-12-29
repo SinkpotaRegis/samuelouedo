@@ -29,10 +29,8 @@
             </ul>
         </li>
         
-<<<<<<< HEAD
 
         
-=======
         <li class="nav-item">
           <a class="nav-link collapsed" data-bs-target="#galerie-nav" data-bs-toggle="collapse" href="#">
               <i class="bi bi-menu-button-wide"></i><span>Galerie</span><i class="bi bi-chevron-down ms-auto"></i>
@@ -50,7 +48,6 @@
               </li>
           </ul>
       </li>
->>>>>>> 5f8e490ab890f3efd36e4589caa1786acb785a1e
 
         <li class="nav-item">
             <a class="nav-link collapsed" href="/grade">

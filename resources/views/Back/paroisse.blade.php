@@ -1,11 +1,13 @@
 @extends('Back.Template')
 @section('sidebar')
+
+
     <ul class="sidebar-nav" id="sidebar-nav">
 
         <li class="nav-item">
             <a class="nav-link collapsed" href="/back">
-                <i class="bi bi-grid"></i>
-                <span>Dashboard</span>
+                <i class="bi bi-church"></i>
+                <span>Paroisse</span>
             </a>
         </li>
         
@@ -29,9 +31,7 @@
             </ul>
         </li>
         
-<<<<<<< HEAD
 
-=======
         <li class="nav-item">
           <a class="nav-link collapsed" data-bs-target="#galerie-nav" data-bs-toggle="collapse" href="#">
               <i class="bi bi-menu-button-wide"></i><span>Galerie</span><i class="bi bi-chevron-down ms-auto"></i>
@@ -49,7 +49,6 @@
               </li>
           </ul>
       </li>
->>>>>>> 5f8e490ab890f3efd36e4589caa1786acb785a1e
         
 
         <li class="nav-item">
@@ -78,15 +77,12 @@
 @endsection
 @section('contenu')
     <section class="section dashboard">
-<<<<<<< HEAD
       <!--  Affiche le message d'enregistrement -->
 @if (session('status'))
 <div class="bg-green-200 text-green-800 p-4 mb-4 rounded-md">
     {{ session('status') }}
 </div>
 @endif
-=======
->>>>>>> 5f8e490ab890f3efd36e4589caa1786acb785a1e
             <div class="row">
  
                 <div class="col-lg-12">
@@ -109,25 +105,14 @@
                                                   <h5 class="modal-title mx-auto">Enregistrement d'une Paroisse</h5>
                                                 </div>
                                                 <div class="modal-body">
-<<<<<<< HEAD
                                                     <form class="row g-3 needs-validation" novalidate enctype="multipart/form-data" method="POST" action="{{route('back.paroisse')}}">
                                                       @csrf
                                                         <div class="col-md-12">
                                                           <label for="validationCustom01" class="form-label">Nomination</label>
                                                           <input type="text" class="form-control" name="nom" id="validationCustom01" placeholder="Saint John" required>
-=======
                                                     <form class="row g-3 needs-validation" novalidate>
                                                         <div class="col-md-12">
-                                                          <label for="validationCustom01" class="form-label">Nomination</label>
-                                                          <input type="text" class="form-control" id="validationCustom01" value="John" required>
->>>>>>> 5f8e490ab890f3efd36e4589caa1786acb785a1e
-                                                          <div class="valid-feedback">
-                                                            Looks good!
-                                                          </div>
-                                                        </div>
-                                                        <div class="col-md-12">
                                                             <label for="validationCustom01" class="form-label">Détails(description & localisation)</label>
-<<<<<<< HEAD
                                                             <textarea name="localisation" id="validationCustom01" class="form-control" cols="30" rows="3" required></textarea>
                                                             <div class="valid-feedback">
                                                               Looks good!
@@ -136,9 +121,6 @@
                                                           <div class="col-md-12">
                                                             <label for="validationCustom01" class="form-label">Email</label>
                                                             <input type="email" class="form-control" name="email" id="validationCustom01" placeholder="example@gmail.com" required>
-=======
-                                                            <textarea name="description" id="validationCustom01" class="form-control" cols="30" rows="3" required>Description</textarea>
->>>>>>> 5f8e490ab890f3efd36e4589caa1786acb785a1e
                                                             <div class="valid-feedback">
                                                               Looks good!
                                                             </div>
@@ -154,6 +136,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                </div>
                                     
                                     
                                     <table class="table table-borderless datatable table-striped">
@@ -161,18 +144,13 @@
                                             <tr>
                                                 <th scope="col">#</th>
                                                 <th scope="col">Nomination</th>
-<<<<<<< HEAD
                                                 <th scope="col">Localisation</th>
                                                 <th scope="col">email</th>
-=======
                                                 <th scope="col">Détails</th>
-                                                <th scope="col">Détails</th>
->>>>>>> 5f8e490ab890f3efd36e4589caa1786acb785a1e
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
-<<<<<<< HEAD
                                                 @foreach ($paroisses as $item)
                                                 <td>{{$item->id}}</td>
                                                 <td>{{$item->nom}}</td>
@@ -192,157 +170,8 @@
                                               </tr>
                                                 @endforeach
 
-=======
-                                                <th scope="row">
-                                                    1
-                                                </th>
-                                                
-                                                <td>St Jean</td>
-                                                <td class="text-primary">Ouèto</td>
-                                                <td >
-                                                    <div class="text-center ">
-                                                        <a href="#" class="text-primary mx-auto" data-bs-toggle="modal" data-bs-target="#disablebackdrop1"><i class="bi bi-pencil-square bi-2x"></i></a>
-                                                        <a href="#" class="text-danger mx-auto"><i class="bi bi-trash-fill bi-2x"></i></a>
-                                                    </div>
->>>>>>> 5f8e490ab890f3efd36e4589caa1786acb785a1e
-                                                    
-                                                    <div class="modal fade" id="disablebackdrop1" tabindex="-1" data-bs-backdrop="false">
-                                                        <div class="modal-dialog">
-                                                          <div class="modal-content">
-                                                            
-                                                            <div class="modal-header ">
-                                                              <h5 class="modal-title mx-auto">Modification d'une Paroisse</h5>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                <form class="row g-3 needs-validation" novalidate>
-                                                                    <div class="col-md-12">
-                                                                      <label for="validationCustom01" class="form-label">Nomination</label>
-                                                                      <input type="text" class="form-control" id="validationCustom01" value="John" required>
-                                                                      <div class="valid-feedback">
-                                                                        Looks good!
-                                                                      </div>
-                                                                    </div>
-                                                                    <div class="col-md-12">
-                                                                        <label for="validationCustom01" class="form-label">Détails(description & localisation)</label>
-                                                                        <textarea name="description" id="validationCustom01" class="form-control" cols="30" rows="3" required>Description</textarea>
-                                                                        <div class="valid-feedback">
-                                                                          Looks good!
-                                                                        </div>
-                                                                      </div>
-                                                                   
-                                                                    <div class="col-12 text-center">
-                                                                      <button class="btn btn-primary" type="submit">Enregistrer</button>
-                                                                      <button type="bouton" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-                                                                    </div>
-                                                                </form>                                                            
-                                                            </div>
-                                                          </div>
-                                                        </div>
-                                                    </div>
-                                                </td>
                                             </tr>
-<<<<<<< HEAD
                                       </tbody>
-=======
-                                            <tr>
-                                                <th scope="row">
-                                                    2
-                                                </th>
-                                                
-                                                <td>St Benito</td>
-                                                <td class="text-primary">Maria-Gléta</td>
-                                                <td >
-                                                    <div class="text-center ">
-                                                        <a href="#" class="text-primary mx-auto" data-bs-toggle="modal" data-bs-target="#disablebackdrop1"><i class="bi bi-pencil-square bi-2x"></i></a>
-                                                        <a href="#" class="text-danger mx-auto"><i class="bi bi-trash-fill bi-2x"></i></a>
-                                                    </div>
-                                                    
-                                                    <div class="modal fade" id="disablebackdrop1" tabindex="-1" data-bs-backdrop="false">
-                                                        <div class="modal-dialog">
-                                                          <div class="modal-content">
-                                                            
-                                                            <div class="modal-header ">
-                                                              <h5 class="modal-title mx-auto">Modification d'une Paroisse</h5>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                <form class="row g-3 needs-validation" novalidate>
-                                                                    <div class="col-md-12">
-                                                                      <label for="validationCustom01" class="form-label">Nomination</label>
-                                                                      <input type="text" class="form-control" id="validationCustom01" value="John" required>
-                                                                      <div class="valid-feedback">
-                                                                        Looks good!
-                                                                      </div>
-                                                                    </div>
-                                                                    <div class="col-md-12">
-                                                                        <label for="validationCustom01" class="form-label">Détails(description & localisation)</label>
-                                                                        <textarea name="description" id="validationCustom01" class="form-control" cols="30" rows="3" required>Description</textarea>
-                                                                        <div class="valid-feedback">
-                                                                          Looks good!
-                                                                        </div>
-                                                                      </div>
-                                                                   
-                                                                    <div class="col-12 text-center">
-                                                                      <button class="btn btn-primary" type="submit">Enregistrer</button>
-                                                                      <button type="bouton" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-                                                                    </div>
-                                                                </form>                                                            
-                                                            </div>
-                                                          </div>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">
-                                                    3
-                                                </th>
-                                                
-                                                <td>Bon Pasteur</td>
-                                                <td class="text-primary">Djadjo</td>
-                                                <td >
-                                                    <div class="text-center ">
-                                                        <a href="#" class="text-primary mx-auto" data-bs-toggle="modal" data-bs-target="#disablebackdrop1"><i class="bi bi-pencil-square bi-2x"></i></a>
-                                                        <a href="#" class="text-danger mx-auto"><i class="bi bi-trash-fill bi-2x"></i></a>
-                                                    </div>
-                                                    
-                                                    <div class="modal fade" id="disablebackdrop1" tabindex="-1" data-bs-backdrop="false">
-                                                        <div class="modal-dialog">
-                                                          <div class="modal-content">
-                                                            
-                                                            <div class="modal-header ">
-                                                              <h5 class="modal-title mx-auto">Modification d'une Paroisse</h5>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                <form class="row g-3 needs-validation" novalidate>
-                                                                    <div class="col-md-12">
-                                                                      <label for="validationCustom01" class="form-label">Nomination</label>
-                                                                      <input type="text" class="form-control" id="validationCustom01" value="John" required>
-                                                                      <div class="valid-feedback">
-                                                                        Looks good!
-                                                                      </div>
-                                                                    </div>
-                                                                    <div class="col-md-12">
-                                                                        <label for="validationCustom01" class="form-label">Détails(description & localisation)</label>
-                                                                        <textarea name="description" id="validationCustom01" class="form-control" cols="30" rows="3" required>Description</textarea>
-                                                                        <div class="valid-feedback">
-                                                                          Looks good!
-                                                                        </div>
-                                                                      </div>
-                                                                   
-                                                                    <div class="col-12 text-center">
-                                                                      <button class="btn btn-primary" type="submit">Enregistrer</button>
-                                                                      <button type="bouton" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-                                                                    </div>
-                                                                </form>                                                            
-                                                            </div>
-                                                          </div>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            
-                                        </tbody>
->>>>>>> 5f8e490ab890f3efd36e4589caa1786acb785a1e
                                     </table>
 
                                 </div>

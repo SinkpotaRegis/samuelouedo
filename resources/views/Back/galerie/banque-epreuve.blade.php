@@ -3,9 +3,9 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
         <li class="nav-item">
-            <a class="nav-link collapsed" href="/back">
+            <a class="nav-link collapsed" href="{{route('back.getepreuve')}}">
                 <i class="bi bi-grid"></i>
-                <span>Dashboard</span>
+                <span>Banque d'Epreuve</span>
             </a>
         </li>
         
@@ -49,7 +49,7 @@
       </li>
 
         <li class="nav-item">
-            <a class="nav-link collapsed" href="/grade">
+            <a class="nav-link collapsed" href="#">
                 <i class="bi bi-person"></i>
                 <span>Grades</span>
             </a>
@@ -88,15 +88,15 @@
                                         <li class="dropdown-header text-start">
                                             <h6>Grades</h6>
                                         </li>
+                                        @foreach ($grades as $grade)
+                                        <li><a class="dropdown-item" href="#">{{$grade->libelle}}</a></li>
+                                        @endforeach
 
-                                        <li><a class="dropdown-item" href="#">Premier servant</a></li>
-                                        <li><a class="dropdown-item" href="#">Deuxième</a></li>
-                                        <li><a class="dropdown-item" href="#">Troisième</a></li>
                                     </ul>
                                 </div>
 
                                 <div class="card-body">
-                                    <h5 class="card-title">Grade <span>| Premier servant</span></h5>
+                                    <h5 class="card-title">Banque d'Epreuve <span></span></h5>
                                     <div class="nouveau my-2">
                                         <a href="#"  data-bs-toggle="modal" data-bs-target="#disablebackdrop">
                                             <i class="bi bi-plus-circle-fill text-success"></i><span >Ajouter</span>
@@ -106,13 +106,14 @@
                                               <div class="modal-content">
                                                 
                                                 <div class="modal-header ">
-                                                  <h5 class="modal-title mx-auto">Enregistrement d'une épreuve</h5>
+                                                  <h5 class="modal-title mx-auto">Insérez une épreuve</h5>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <form class="row g-3 needs-validation" novalidate>
+                                                    <form class="row g-3 needs-validation" method="POST" enctype="multipart/form-data" action="{{route('back.postepreuve')}}" novalidate>
+                                                        @csrf
                                                         <div class="col-md-6">
                                                           <label for="validationCustom01" class="form-label">Titre</label>
-                                                          <input type="text" class="form-control" id="validationCustom01" value="John" required>
+                                                          <input type="text" name="titre" class="form-control" id="validationCustom01" placeholder="John" required>
                                                           <div class="valid-feedback">
                                                             Looks good!
                                                           </div>
@@ -121,9 +122,11 @@
                                                         
                                                         <div class="col-md-6">
                                                             <label for="validationCustom04" class="form-label">Grade</label>
-                                                            <select class="form-select" id="validationCustom04" required>
+                                                            <select class="form-select" name="id_grade" id="validationCustom04" required>
                                                               <option selected disabled value="">Choisir le grade</option>
-                                                              <option>...</option>
+                                                              @foreach ($grades as $values)
+                                                              <option value="{{$values->id}}" >{{$values->libelle}}</option>
+                                                              @endforeach
                                                             </select>
                                                             <div class="invalid-feedback">
                                                               Please select a valid state.
@@ -131,8 +134,8 @@
                                                         </div>
 
                                                         <div class="col-md-12">
-                                                            <label for="validationCustom02" class="form-label">Description</label>
-                                                            <input type="text" class="form-control" id="validationCustom02" value="Doe" required>
+                                                            <label for="validationCustom02" class="form-label">Epreuve</label>
+                                                            <input type="file" name="epreuve" class="form-control" id="validationCustom02" required>
                                                             <div class="valid-feedback">
                                                               Looks good!
                                                             </div>
@@ -148,41 +151,38 @@
                                         </div>
                                     </div>
                                     
-                                    
-                                    <table class="table table-borderless datatable table-striped">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">Epreuve</th>
-                                                <th scope="col">Titre</th>
-                                                <th scope="col">Description</th>
-                                                <th scope="col">Grade</th>
-                                                <th scope="col">Détails</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <th scope="row">
-                                                    <form action="/upload" method="POST" enctype="multipart/form-data" id="pdfForm">
-                                                        @csrf 
-                                                        <div class="input-group">
-                                                            <input type="file" name="pdf" id="pdf" class="d-none" onchange="soumettre()" accept="pdf/*">
-                                                            <label for="pdf" class="btn  btn-sm" title="Upload new pdf">
-                                                                <img src="assets/img/pdf_icon.png" alt="">
-                                                            </label>
+
+                                    <div class="container py-4">
+                                        <h2 class="text-center mb-4">Liste des épreuves</h2>
+                                        <div class="row row-cols-1 row-cols-md-3 g-3">
+                                            @foreach($NosEpreuves as $epreuve)
+                                                <div class="col">
+                                                    <div class="card h-100">
+                                                        <div class="card-body">
+                                                            <h5 class="card-title">{{ $epreuve->titre }}</h5>
+                                                            @if(file_exists(public_path('storage/' . $epreuve->epeuve)))
+                                                                <div class="text-center mb-2">
+                                                                    <img src="{{ asset('assets/pdf/pdf.png') }}" alt="Logo PDF" width="50"> <br>
+                                                                    <a href="{{ asset('storage/' . $epreuve->epreuve) }}" download="{{ $epreuve->titre }}" class="text-decoration-none text-primary ms-2">
+                                                                        <i class="bi bi-cloud-download"></i>Télécharger 
+                                                                    </a> <br>
+                                                                    <a href="{{ asset('storage/' . $epreuve->epreuve) }}" target="_blank" class="text-decoration-none text-primary ms-2">
+                                                                        <i class="bi bi-box-arrow-up-right"></i>  Ouvrir
+                                                                    </a>
+                                                                </div>
+                                                            @else
+                                                                <p>Aucun fichier PDF associé</p>
+                                                            @endif
                                                         </div>
-                                                    </form>
-                                                </th>
-                                                
-                                                <td>Brandon Jacob</td>
-                                                <td class="text-primary">St Jean</td>
-                                                <td>Premier Servant</td>
-                                                <td >
-                                                    <div class="text-center ">
-                                                        <a href="#" class="text-primary mx-auto" data-bs-toggle="modal" data-bs-target="#disablebackdrop1"><i class="bi bi-pencil-square bi-2x"></i></a>
-                                                        <a href="#" class="text-danger mx-auto"><i class="bi bi-trash-fill bi-2x"></i></a>
                                                     </div>
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                    
+
                                                     
-                                                    <div class="modal fade" id="disablebackdrop1" tabindex="-1" data-bs-backdrop="false">
+                                                    {{-- <div class="modal fade" id="disablebackdrop1" tabindex="-1" data-bs-backdrop="false">
                                                         <div class="modal-dialog">
                                                           <div class="modal-content">
                                                             
@@ -226,21 +226,8 @@
                                                             </div>
                                                           </div>
                                                         </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-
-                                </div>
-
-                            </div>
-                        </div>
-                        
-
-                    </div>
-                </div>
-            </div>
+                                                    </div> --}}
+                           
            
         </section>
 @endsection

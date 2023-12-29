@@ -13,4 +13,14 @@ class Paroisse extends Model
         'localisation',
         'email',
     ];
+
+    public function epreuves()
+    {
+        return $this->hasMany(Epeuve::class);
+    }
+
+    public function animateurs()
+    {
+        return $this->hasMany(Animateur::class, 'id_paroisse', 'id');
+    }
 }
