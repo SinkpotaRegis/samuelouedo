@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminPostController;
 use App\Http\Controllers\EpreuveControlleur;
+use App\Http\Controllers\SamuelController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,7 +24,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/animateur',[AdminController::class, 'animateur'])->name('back.getanimateur');
 Route::get('/connexion',[AdminController::class, 'connexion']);
 Route::get('/grade',[AdminController::class, 'grade']);
-Route::get('/',[AdminController::class, 'index']);
+Route::get('/indexadmin',[AdminController::class, 'index'])->name('indexadmin');
+Route::get('/',[SamuelController::class, 'index']);
 Route::get('/parametre',[AdminController::class, 'parametre']);
 Route::get('/poste',[AdminController::class, 'poste']);
 Route::get('/samuel',[AdminController::class, 'samuel'])->name('back.getsamuel');
